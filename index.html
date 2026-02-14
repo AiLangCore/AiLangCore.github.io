@@ -8,143 +8,89 @@
 </head>
 <body>
 
-<header class="hero">
-    <img src="assets/logo.png" alt="AiLang Logo" class="hero-logo" />
+<header class="hero container">
+    <img src="assets/logo.png" alt="AiLang Logo" class="logo" />
     <h1>AiLang</h1>
     <p class="tagline">
-        A deterministic programming language built for AI-native development.
+        Deterministic programming for AI-native systems.
     </p>
-    <div class="hero-actions">
-        <a href="https://github.com/AiLangCore/AiLang" class="button">
-            View Specification
-        </a>
-        <a href="https://github.com/AiLangCore" class="button secondary">
-            Explore GitHub
-        </a>
+    <div class="actions">
+        <a href="https://github.com/AiLangCore/AiLang" class="btn">Specification</a>
+        <a href="https://github.com/AiLangCore" class="btn outline">GitHub</a>
     </div>
 </header>
 
 <main>
 
-    <!-- Problem -->
-    <section>
-        <h2>Why AiLang?</h2>
-        <p>
-            Modern programming languages were not designed for AI agents.
-            They rely on implicit semantics, reflection-heavy runtimes,
-            host-coupled behavior, and non-deterministic execution.
-        </p>
-        <p>
-            AI-driven development requires structural clarity,
-            deterministic evaluation, and spec-governed behavior.
-        </p>
-    </section>
+<section class="container section">
+    <h2>Principles</h2>
+    <ul class="list">
+        <li>Semantic authority lives inside the language.</li>
+        <li>The host runtime is mechanical and replaceable.</li>
+        <li>Determinism is mandatory.</li>
+        <li>Specification governs implementation.</li>
+        <li>Golden tests are authoritative.</li>
+    </ul>
+</section>
 
-    <!-- Philosophy -->
-    <section>
-        <h2>Core Principles</h2>
-        <ul class="principles">
-            <li><strong>Semantic Authority Lives in AiLang</strong></li>
-            <li><strong>Host Runtime is Mechanical and Replaceable</strong></li>
-            <li><strong>Determinism is Mandatory</strong></li>
-            <li><strong>Specification Governs Implementation</strong></li>
-            <li><strong>Golden Tests are Authoritative</strong></li>
-        </ul>
-    </section>
-
-    <!-- Architecture -->
-    <section>
-        <h2>Architecture</h2>
-        <div class="architecture">
-            <div class="layer">AiLang<br/><span>Language Semantics</span></div>
-            <div class="arrow">↓</div>
-            <div class="layer">AiVM<br/><span>Deterministic Execution Engine</span></div>
-            <div class="arrow">↓</div>
-            <div class="layer">Host Runtime<br/><span>Replaceable (C / Rust / C#)</span></div>
+<section class="container section">
+    <h2>Architecture</h2>
+    <div class="architecture">
+        <div class="layer">
+            <strong>AiLang</strong>
+            <span>Language Semantics</span>
         </div>
-    </section>
-
-    <!-- Products -->
-    <section>
-        <h2>The Stack</h2>
-        <div class="product-grid">
-
-            <div class="product-card">
-                <h3>AiLang</h3>
-                <p>
-                    Spec-governed language where evaluation,
-                    validation, and compiler behavior live inside the language.
-                </p>
-                <a href="https://github.com/AiLangCore/AiLang">
-                    View Repository →
-                </a>
-            </div>
-
-            <div class="product-card">
-                <h3>AiVM</h3>
-                <p>
-                    Minimal deterministic execution engine.
-                    Thin. Mechanical. Replaceable.
-                </p>
-                <a href="https://github.com/AiLangCore/AiVM">
-                    View Repository →
-                </a>
-            </div>
-
-            <div class="product-card">
-                <h3>AiVectra</h3>
-                <p>
-                    Vector-based UI runtime for building AI-generated,
-                    cross-platform graphical applications.
-                </p>
-                <a href="https://github.com/AiLangCore/AiVectra">
-                    View Repository →
-                </a>
-            </div>
-
+        <div class="divider"></div>
+        <div class="layer">
+            <strong>AiVM</strong>
+            <span>Deterministic Execution</span>
         </div>
-    </section>
+        <div class="divider"></div>
+        <div class="layer">
+            <strong>Host</strong>
+            <span>Replaceable (C / Rust / C#)</span>
+        </div>
+    </div>
+</section>
 
-    <!-- Capabilities -->
-    <section>
-        <h2>Capabilities</h2>
-        <ul class="capabilities">
-            <li>CLI Applications</li>
-            <li>Web APIs</li>
-            <li>Self-Hosted Web Apps</li>
-            <li>Cross-Platform Execution</li>
-            <li>Embedded Linux Targets</li>
-            <li>AI-Generated Code Friendly</li>
-        </ul>
-    </section>
+<section class="container section">
+    <h2>The Stack</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>AiLang</h3>
+            <p>Spec-governed deterministic language core.</p>
+            <a href="https://github.com/AiLangCore/AiLang">Repository →</a>
+        </div>
 
-    <!-- Roadmap -->
-    <section>
-        <h2>Current Focus</h2>
-        <ul class="roadmap">
-            <li>Stabilize VM MVP</li>
-            <li>Minimal SDK Release</li>
-            <li>Multi-file Module Composition</li>
-            <li>Standard Library Growth</li>
-            <li>Tooling Robustness</li>
-        </ul>
-    </section>
+        <div class="card">
+            <h3>AiVM</h3>
+            <p>Minimal execution engine. Thin. Mechanical.</p>
+            <a href="https://github.com/AiLangCore/AiVM">Repository →</a>
+        </div>
 
-    <!-- Support -->
-    <section class="support">
-        <h2>Support the Project</h2>
-        <p>
-            AiLang is building foundational infrastructure
-            for AI-native software systems.
-        </p>
-        <a href="https://github.com/sponsors" class="button">
-            Sponsor Development
-        </a>
-    </section>
+        <div class="card">
+            <h3>AiVectra</h3>
+            <p>Vector UI runtime for AI-generated interfaces.</p>
+            <a href="https://github.com/AiLangCore/AiVectra">Repository →</a>
+        </div>
+    </div>
+</section>
+
+<section class="container section">
+    <h2>Capabilities</h2>
+    <ul class="list two-column">
+        <li>CLI Applications</li>
+        <li>Web APIs</li>
+        <li>Self-Hosted Web Apps</li>
+        <li>Cross-Platform Execution</li>
+        <li>Embedded Linux Targets</li>
+        <li>AI-Generated Code Friendly</li>
+    </ul>
+</section>
 
 </main>
 
-<footer>
+<footer class="container footer">
     <p>© 2026 Todd Henderson</p>
 </footer>
 
