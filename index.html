@@ -15,12 +15,43 @@
         Deterministic programming for AI-native systems.
     </p>
     <div class="actions">
+        <a href="#install" class="btn">Install</a>
         <a href="https://github.com/AiLangCore/AiLang" class="btn">Specification</a>
         <a href="https://github.com/AiLangCore" class="btn outline">GitHub</a>
     </div>
 </header>
 
 <main>
+
+<section id="install" class="container section install-section">
+    <h2>Install</h2>
+    <div class="install-grid">
+        <div>
+            <h3>macOS and Linux</h3>
+            <pre><code>curl -fsSL https://ailang.org/install.sh | sh</code></pre>
+            <p class="muted">
+                Installs the current stable toolchain into <code>~/.ailang</code>.
+            </p>
+        </div>
+        <div>
+            <h3>Windows PowerShell</h3>
+            <pre><code>irm https://ailang.org/install.ps1 | iex</code></pre>
+            <p class="muted">
+                Installs the current stable toolchain into <code>%USERPROFILE%\.ailang</code>.
+            </p>
+        </div>
+    </div>
+    <div class="install-details">
+        <h3>Channels</h3>
+        <pre><code>curl -fsSL https://ailang.org/install.sh | sh -s -- --channel alpha
+curl -fsSL https://ailang.org/install.sh | sh -s -- --version 0.0.1-alpha.12</code></pre>
+        <p class="muted">
+            The bootstrapper downloads prebuilt release artifacts, updates the local
+            toolchain pointer, and creates shims for <code>ailang</code>, <code>aivm</code>,
+            and <code>aivectra</code>.
+        </p>
+    </div>
+</section>
 
 <section class="container section">
     <h2>Principles</h2>
@@ -47,8 +78,8 @@
         </div>
         <div class="divider"></div>
         <div class="layer">
-            <strong>Host</strong>
-            <span>Replaceable (C / Rust / C#)</span>
+            <strong>AiVectra</strong>
+            <span>Vector UI SDK</span>
         </div>
     </div>
 </section>
@@ -84,8 +115,27 @@
         <li>Self-Hosted Web Apps</li>
         <li>Cross-Platform Execution</li>
         <li>Embedded Linux Targets</li>
+        <li>Vector UI Applications</li>
         <li>AI-Generated Code Friendly</li>
     </ul>
+</section>
+
+<section class="container section">
+    <h2>Release Model</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Git Flow</h3>
+            <p><code>develop</code> carries integration builds. Releases are cut from <code>main</code>.</p>
+        </div>
+        <div class="card">
+            <h3>Toolchain</h3>
+            <p>AiLang, AiVM, and AiVectra are versioned as compatible components.</p>
+        </div>
+        <div class="card">
+            <h3>Packages</h3>
+            <p>Homebrew, RPM, DEB, and Windows installers can wrap the same release artifacts later.</p>
+        </div>
+    </div>
 </section>
 
 </main>
