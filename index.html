@@ -16,7 +16,8 @@
     </p>
     <div class="actions">
         <a href="#install" class="btn">Install</a>
-        <a href="https://github.com/AiLangCore/AiLang" class="btn">Specification</a>
+        <a href="#docs" class="btn">Documentation</a>
+        <a href="https://github.com/sponsors/AiLangCore" class="btn sponsor">Sponsor</a>
         <a href="https://github.com/AiLangCore" class="btn outline">GitHub</a>
     </div>
 </header>
@@ -44,12 +45,55 @@
     <div class="install-details">
         <h3>Channels</h3>
         <pre><code>curl -fsSL https://ailang.org/install.sh | sh -s -- --channel alpha
-curl -fsSL https://ailang.org/install.sh | sh -s -- --version 0.0.1-alpha.12</code></pre>
+curl -fsSL https://ailang.org/install.sh | sh -s -- --version 0.0.1-alpha.10</code></pre>
         <p class="muted">
             The bootstrapper downloads prebuilt release artifacts, updates the local
             toolchain pointer, and creates shims for <code>ailang</code>, <code>aivm</code>,
             and <code>aivectra</code>.
         </p>
+    </div>
+</section>
+
+<section id="docs" class="container section docs-section">
+    <div class="section-header">
+        <h2>Documentation</h2>
+        <a href="https://github.com/AiLangCore/AiLang/tree/develop/Docs" class="text-link">All AiLang docs</a>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <h3>Getting Started</h3>
+            <p>Build the local toolchain, run samples, scaffold projects, and verify deterministic output.</p>
+            <a href="https://github.com/AiLangCore/AiLang/blob/develop/Docs/Getting-Started.md">Read guide →</a>
+        </div>
+        <div class="card">
+            <h3>Installation and Versioning</h3>
+            <p>Git Flow release channels, component compatibility, and the cross-platform install layout.</p>
+            <a href="https://github.com/AiLangCore/AiLang/blob/develop/Docs/Installation-Versioning.md">Read contract →</a>
+        </div>
+        <div class="card">
+            <h3>Repository Split</h3>
+            <p>Ownership boundaries for AiLang, AiVM, and AiVectra during the public repository migration.</p>
+            <a href="https://github.com/AiLangCore/AiLang/blob/develop/Docs/Three-Repo-Migration.md">Read migration plan →</a>
+        </div>
+    </div>
+    <div class="doc-links">
+        <a href="https://github.com/AiLangCore/AiLang/tree/develop/SPEC">AiLang specs</a>
+        <a href="https://github.com/AiLangCore/AiVM">AiVM runtime</a>
+        <a href="https://github.com/AiLangCore/AiVectra/tree/develop/SPEC">AiVectra specs</a>
+        <a href="https://github.com/AiLangCore/AiLang/releases">Releases</a>
+    </div>
+</section>
+
+<section class="container section sponsor-section">
+    <div class="sponsor-panel">
+        <div>
+            <h2>Sponsor AiLangCore</h2>
+            <p>
+                Sponsorship funds release infrastructure, cross-platform packaging,
+                documentation, and the AiVM/AiVectra migration work.
+            </p>
+        </div>
+        <a href="https://github.com/sponsors/AiLangCore" class="btn sponsor large">Sponsor on GitHub</a>
     </div>
 </section>
 

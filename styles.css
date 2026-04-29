@@ -32,6 +32,18 @@ a:hover {
     padding: 80px 0;
 }
 
+.section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.section-header h2 {
+    margin-bottom: 0;
+}
+
 h1 {
     font-size: 3rem;
     font-weight: 600;
@@ -53,7 +65,10 @@ h3 {
 }
 
 .logo {
-    width: 120px;
+    width: min(320px, 72vw);
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 .tagline {
@@ -64,7 +79,7 @@ h3 {
 
 .hero {
     text-align: center;
-    padding: 120px 0 100px;
+    padding: 96px 0 84px;
 }
 
 .actions {
@@ -81,6 +96,10 @@ h3 {
     color: #5da9ff;
     font-size: 0.9rem;
     letter-spacing: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
 }
 
 .btn.outline {
@@ -88,9 +107,31 @@ h3 {
     color: #aaa;
 }
 
+.btn.sponsor {
+    border-color: #ff6f91;
+    color: #ffb2c2;
+}
+
+.btn.large {
+    min-height: 48px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
 .btn:hover {
     background: #5da9ff;
     color: #0b0d10;
+}
+
+.btn.sponsor:hover {
+    background: #ff6f91;
+    color: #0b0d10;
+}
+
+.text-link {
+    color: #9ecbff;
+    font-size: 0.95rem;
 }
 
 .list {
@@ -138,6 +179,44 @@ h3 {
 .install-section {
     border-top: 1px solid #222;
     border-bottom: 1px solid #222;
+}
+
+.docs-section {
+    border-bottom: 1px solid #222;
+}
+
+.doc-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    margin-top: 28px;
+}
+
+.doc-links a {
+    color: #c9d8ea;
+}
+
+.sponsor-section {
+    padding: 56px 0;
+}
+
+.sponsor-panel {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    align-items: center;
+    padding: 32px 0;
+    border-top: 1px solid #3a2430;
+    border-bottom: 1px solid #3a2430;
+}
+
+.sponsor-panel h2 {
+    margin-bottom: 12px;
+}
+
+.sponsor-panel p {
+    color: #b8b8b8;
+    max-width: 620px;
 }
 
 .install-grid {
@@ -193,8 +272,18 @@ code {
         padding: 80px 0 64px;
     }
 
+    .logo {
+        width: min(260px, 78vw);
+    }
+
     h1 {
         font-size: 2.4rem;
+    }
+
+    .section-header,
+    .sponsor-panel {
+        align-items: flex-start;
+        flex-direction: column;
     }
 
     .two-column {
