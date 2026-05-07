@@ -1,153 +1,448 @@
-/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:root {
+    color-scheme: dark;
+    --bg: #0b0d10;
+    --panel: #080a0d;
+    --text: #e8edf5;
+    --muted: #aab4c0;
+    --line: #252b32;
+    --link: #76b7ff;
+    --sponsor: #ff7fa0;
+}
+
 body {
-    background: #0b0d10;
-    color: #e6e6e6;
+    background: var(--bg);
+    color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
     line-height: 1.6;
 }
 
 a {
-    color: #5da9ff;
+    color: var(--link);
     text-decoration: none;
-    transition: opacity 0.2s ease;
 }
 
 a:hover {
-    opacity: 0.7;
+    opacity: 0.78;
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1040px;
     margin: 0 auto;
     padding: 0 24px;
 }
 
-.section {
-    padding: 80px 0;
+.top-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 24px;
+    width: 100%;
+    margin-bottom: 40px;
+    font-size: 0.95rem;
 }
 
-h1 {
-    font-size: 3rem;
-    font-weight: 600;
-    letter-spacing: -1px;
-    margin-top: 24px;
+.top-nav a {
+    color: #c9d8ea;
 }
 
-h2 {
-    font-size: 1.75rem;
-    font-weight: 500;
-    margin-bottom: 32px;
-    letter-spacing: -0.5px;
-}
-
-h3 {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 12px;
-}
-
-.logo {
-    width: 120px;
-}
-
-.tagline {
-    margin-top: 16px;
-    font-size: 1.1rem;
-    color: #a0a0a0;
+.top-nav .sponsor-link {
+    color: #ffc0cf;
 }
 
 .hero {
+    min-height: 88vh;
+    padding-top: 32px;
+    padding-bottom: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: 120px 0 100px;
 }
 
-.actions {
-    margin-top: 32px;
-    display: flex;
-    justify-content: center;
+.logo {
+    width: min(300px, 70vw);
+    height: auto;
+    display: block;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 3.2rem;
+    font-weight: 650;
+    letter-spacing: 0;
+}
+
+.tagline {
+    margin-top: 0;
+    max-width: 620px;
+    color: var(--muted);
+    font-size: 1.15rem;
+}
+
+.alpha-note {
+    margin-top: 12px;
+    color: #d7e6f7;
+    font-size: 0.92rem;
+}
+
+.hero-install {
+    width: min(820px, 100%);
+    margin-top: 28px;
+    display: grid;
     gap: 16px;
 }
 
-.btn {
-    padding: 10px 20px;
-    border: 1px solid #5da9ff;
-    color: #5da9ff;
+.install-command {
+    text-align: left;
+}
+
+.install-command span {
+    display: block;
+    margin-bottom: 8px;
+    color: #c9d8ea;
     font-size: 0.9rem;
-    letter-spacing: 0.5px;
+}
+
+pre {
+    overflow-x: auto;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.95em;
+}
+
+.actions {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    min-height: 42px;
+    padding: 10px 18px;
+    border: 1px solid var(--link);
+    color: var(--link);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.92rem;
+    letter-spacing: 0;
 }
 
 .btn.outline {
-    border-color: #444;
-    color: #aaa;
+    border-color: #515b66;
+    color: #c2cbd5;
+}
+
+.btn.sponsor {
+    border-color: var(--sponsor);
+    color: #ffc0cf;
+}
+
+.btn.large {
+    min-height: 48px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    white-space: nowrap;
 }
 
 .btn:hover {
-    background: #5da9ff;
-    color: #0b0d10;
+    background: var(--link);
+    color: var(--bg);
+    opacity: 1;
 }
 
-.list {
-    list-style: none;
-    color: #b8b8b8;
+.btn.sponsor:hover {
+    background: var(--sponsor);
+    color: var(--bg);
 }
 
-.list li {
-    margin-bottom: 12px;
+.section {
+    padding: 64px 0;
+    border-top: 1px solid var(--line);
 }
 
-.two-column {
-    columns: 2;
-    column-gap: 60px;
+.section.compact {
+    padding: 56px 0;
 }
 
-.architecture {
+.section-header {
     display: flex;
-    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-between;
     gap: 24px;
-    max-width: 400px;
+    margin-bottom: 28px;
 }
 
-.layer strong {
+h2 {
+    font-size: 1.6rem;
+    font-weight: 560;
+    letter-spacing: 0;
+}
+
+.text-link {
+    color: #b7d8ff;
+    font-size: 0.95rem;
+}
+
+.repo-list a,
+.link-grid a {
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+}
+
+.repo-list strong {
     display: block;
-    font-size: 1rem;
+    margin-bottom: 6px;
+    color: #f2f6fb;
+    font-size: 1.05rem;
 }
 
-.layer span {
-    color: #888;
-    font-size: 0.9rem;
+.repo-list span {
+    color: var(--muted);
 }
 
-.divider {
-    height: 1px;
-    background: #222;
+.muted {
+    margin-top: 20px;
+    color: var(--muted);
 }
 
-.grid {
+.docs-section {
+    border-bottom: 1px solid var(--line);
+}
+
+.link-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 28px;
 }
 
-.card {
-    padding: 24px 0;
-    border-top: 1px solid #222;
+.link-grid a {
+    color: #dbe9f8;
 }
 
-.card p {
-    color: #999;
-    margin-bottom: 12px;
+.secondary-docs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-top: 28px;
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.secondary-docs a {
+    color: #b7d8ff;
+}
+
+.repo-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.repo-list a {
+    color: inherit;
+}
+
+.sponsor-section {
+    padding: 56px 0;
+}
+
+.sponsor-panel {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    align-items: center;
+    padding: 32px 0;
+    border-top: 1px solid #4a2633;
+    border-bottom: 1px solid #4a2633;
+}
+
+.sponsor-panel h2 {
+    margin-bottom: 10px;
+}
+
+.sponsor-panel p {
+    color: var(--muted);
+    max-width: 640px;
 }
 
 .footer {
-    padding: 60px 0;
-    border-top: 1px solid #222;
-    color: #666;
+    padding: 44px 24px 60px;
+    border-top: 1px solid var(--line);
+    color: #78828d;
     font-size: 0.85rem;
     text-align: center;
+}
+
+.doc-page-header {
+    padding-top: 32px;
+    padding-bottom: 48px;
+}
+
+.doc-page-header .top-nav {
+    margin-bottom: 56px;
+}
+
+.doc-page-header h1 {
+    margin-top: 0;
+}
+
+.doc-page {
+    padding-bottom: 72px;
+}
+
+.doc-page section {
+    padding: 40px 0;
+    border-top: 1px solid var(--line);
+}
+
+.doc-page h2 {
+    margin-bottom: 16px;
+}
+
+.doc-page p {
+    margin: 12px 0;
+    color: var(--muted);
+}
+
+.doc-page ul {
+    margin: 14px 0 0 20px;
+    color: var(--muted);
+}
+
+.doc-page li + li {
+    margin-top: 6px;
+}
+
+@media (max-width: 760px) {
+    .container {
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+
+    .top-nav {
+        justify-content: center;
+        gap: 18px;
+        margin-bottom: 32px;
+    }
+
+    .hero {
+        min-height: auto;
+        padding-top: 24px;
+        padding-bottom: 48px;
+    }
+
+    .logo {
+        width: min(220px, 66vw);
+    }
+
+    .tagline {
+        max-width: 32rem;
+        font-size: 1.05rem;
+    }
+
+    .alpha-note {
+        max-width: 32rem;
+    }
+
+    .hero-install {
+        margin-top: 24px;
+        gap: 18px;
+    }
+
+    h1 {
+        font-size: 2.6rem;
+    }
+
+    h2 {
+        font-size: 1.45rem;
+    }
+
+    pre {
+        padding: 14px;
+        font-size: 0.88rem;
+    }
+
+    .actions {
+        gap: 12px;
+    }
+
+    .btn {
+        flex: 1 1 140px;
+    }
+
+    .section,
+    .section.compact,
+    .sponsor-section {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    .link-grid,
+    .repo-list {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header,
+    .sponsor-panel {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 420px) {
+    .container {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+
+    .top-nav {
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 0.9rem;
+    }
+
+    .hero {
+        padding-top: 20px;
+        padding-bottom: 40px;
+    }
+
+    .logo {
+        width: min(200px, 64vw);
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    pre {
+        margin-left: -2px;
+        margin-right: -2px;
+        padding: 12px;
+        font-size: 0.82rem;
+    }
+
+    .btn,
+    .btn.large {
+        width: 100%;
+    }
+
+    .sponsor-panel {
+        gap: 24px;
+    }
 }
