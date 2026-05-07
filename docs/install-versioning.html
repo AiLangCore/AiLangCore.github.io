@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AiLang Installation and Versioning</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<header class="container doc-page-header">
+    <nav class="top-nav" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="quickstart.html">Quickstart</a>
+        <a href="https://github.com/sponsors/AiLangCore" class="sponsor-link">Sponsor</a>
+    </nav>
+    <h1>Installation and Versioning</h1>
+    <p class="tagline">How AiLang toolchains are installed, selected, and updated.</p>
+</header>
+
+<main class="container doc-page">
+    <section>
+        <h2>Install Location</h2>
+        <pre><code>~/.ailang/
+  bin/
+  bin/
+  toolchains/
+    local/
+    0.0.1-alpha.15/
+  current</code></pre>
+        <p>The shims in <code>~/.ailang/bin</code> route commands to the selected toolchain.</p>
+    </section>
+
+    <section>
+        <h2>Release Channels</h2>
+        <pre><code>curl -fsSL https://ailang.org/install.sh | sh
+curl -fsSL https://ailang.org/install.sh | sh -s -- --channel alpha
+curl -fsSL https://ailang.org/install.sh | sh -s -- --version 0.0.1-alpha.15</code></pre>
+        <p>The default channel is alpha until the first stable release. Alpha, beta, release-candidate, stable, and local builds use the same install layout.</p>
+    </section>
+
+    <section>
+        <h2>Project Toolchain</h2>
+        <pre><code>[toolchain]
+version = "local"</code></pre>
+        <p>A project can select a local development toolchain without changing the global default.</p>
+    </section>
+
+    <section>
+        <h2>Source</h2>
+        <p><a href="https://github.com/AiLangCore/AiLang/blob/develop/Docs/Installation-Versioning.md">View the full installation and versioning contract on GitHub.</a></p>
+    </section>
+</main>
+
+<footer class="container footer">
+    <p>&copy; 2026 Todd Henderson</p>
+</footer>
+
+</body>
+</html>

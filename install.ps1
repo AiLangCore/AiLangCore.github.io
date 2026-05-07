@@ -1,9 +1,13 @@
 param(
   [string]$Version = $env:AILANG_VERSION,
   [ValidateSet('stable', 'alpha', 'beta', 'rc')]
-  [string]$Channel = $(if ($env:AILANG_CHANNEL) { $env:AILANG_CHANNEL } else { 'stable' }),
+  [string]$Channel = $(if ($env:AILANG_CHANNEL) { $env:AILANG_CHANNEL } else { 'alpha' }),
   [string]$InstallRoot = $(if ($env:AILANG_INSTALL_ROOT) { $env:AILANG_INSTALL_ROOT } else { Join-Path $HOME '.ailang' }),
-  [string]$Repo = $(if ($env:AILANG_REPO) { $env:AILANG_REPO } else { 'AiLangCore/AiLang' })
+  [string]$Repo = $(if ($env:AILANG_REPO) { $env:AILANG_REPO } else { 'AiLangCore/AiLang' }),
+  [string]$AivmVersion = $env:AIVM_VERSION,
+  [string]$AiVectraVersion = $env:AIVECTRA_VERSION,
+  [string]$AivmRepo = $(if ($env:AIVM_REPO) { $env:AIVM_REPO } else { 'AiLangCore/AiVM' }),
+  [string]$AiVectraRepo = $(if ($env:AIVECTRA_REPO) { $env:AIVECTRA_REPO } else { 'AiLangCore/AiVectra' })
 )
 
 $ErrorActionPreference = 'Stop'
@@ -27,21 +31,45 @@ function Get-Rid {
   throw 'unsupported operating system'
 }
 
-function Resolve-Tag {
-  if ($Version) {
-    if ($Version.StartsWith('v')) { return $Version }
-    return "v$Version"
+function Resolve-RepoTag {
+  param([string]$RepoName, [string]$ExactVersion)
+  if ($ExactVersion) {
+    if ($ExactVersion.StartsWith('v')) { return $ExactVersion }
+    return "v$ExactVersion"
   }
   if ($Channel -eq 'stable') {
-    $latest = Invoke-RestMethod "https://api.github.com/repos/$Repo/releases/latest"
+    $latest = Invoke-RestMethod "https://api.github.com/repos/$RepoName/releases/latest"
     return $latest.tag_name
   }
-  $releases = Invoke-RestMethod "https://api.github.com/repos/$Repo/releases?per_page=100"
+  $releases = Invoke-RestMethod "https://api.github.com/repos/$RepoName/releases?per_page=100"
   $match = $releases | Where-Object { $_.tag_name -match "-$Channel\." } | Select-Object -First 1
   if (-not $match) {
-    throw "could not resolve AiLang release for channel: $Channel"
+    throw "could not resolve release for $RepoName channel: $Channel"
   }
   return $match.tag_name
+}
+
+function Resolve-Tag {
+  return Resolve-RepoTag $Repo $Version
+}
+
+function Expand-Package {
+  param([string]$Archive, [string]$Destination)
+  New-Item -ItemType Directory -Force $Destination | Out-Null
+  $extractDir = Join-Path $tmp "extract-$([guid]::NewGuid())"
+  New-Item -ItemType Directory -Force $extractDir | Out-Null
+  Expand-Archive -Path $Archive -DestinationPath $extractDir -Force
+  $expanded = Get-ChildItem $extractDir -Directory | Select-Object -First 1
+  if ($expanded) {
+    Copy-Item -Path (Join-Path $expanded.FullName '*') -Destination $Destination -Recurse -Force
+  } else {
+    Copy-Item -Path (Join-Path $extractDir '*') -Destination $Destination -Recurse -Force
+  }
+}
+
+function Download-Asset {
+  param([string]$RepoName, [string]$TagName, [string]$ArtifactName, [string]$OutFile)
+  Invoke-WebRequest -Uri "https://github.com/$RepoName/releases/download/$TagName/$ArtifactName" -OutFile $OutFile
 }
 
 function New-Shim {
@@ -81,12 +109,40 @@ try {
   $dest = Join-Path $InstallRoot "toolchains\$versionNoV"
   Remove-Item -Recurse -Force $dest -ErrorAction SilentlyContinue
   New-Item -ItemType Directory -Force $dest | Out-Null
-  Expand-Archive -Path $archive -DestinationPath $tmp -Force
-  $expanded = Get-ChildItem $tmp -Directory | Where-Object { $_.Name -like "*$versionNoV*" } | Select-Object -First 1
-  if ($expanded) {
-    Copy-Item -Path (Join-Path $expanded.FullName '*') -Destination $dest -Recurse -Force
-  } else {
-    Copy-Item -Path (Join-Path $tmp '*') -Destination $dest -Recurse -Force
+  Expand-Package $archive $dest
+
+  $aivmTag = Resolve-RepoTag $AivmRepo $AivmVersion
+  if ($aivmTag) {
+    $aivmVersionNoV = $aivmTag.TrimStart('v')
+    $aivmArtifact = "aivm-$aivmVersionNoV-windows.zip"
+    $aivmArchive = Join-Path $tmp $aivmArtifact
+    $aivmStage = Join-Path $tmp 'aivm'
+    $aivmDest = Join-Path $dest 'aivm'
+    Download-Asset $AivmRepo $aivmTag $aivmArtifact $aivmArchive
+    Expand-Package $aivmArchive $aivmStage
+    New-Item -ItemType Directory -Force $aivmDest, (Join-Path $dest 'bin') | Out-Null
+    Copy-Item -Path (Join-Path $aivmStage '*') -Destination $aivmDest -Recurse -Force
+    $aivmExe = Join-Path $aivmStage 'bin\aivm.exe'
+    if (Test-Path $aivmExe) {
+      Copy-Item -Path $aivmExe -Destination (Join-Path $dest 'bin\aivm.exe') -Force
+    }
+  }
+
+  $aivectraTag = Resolve-RepoTag $AiVectraRepo $AiVectraVersion
+  if ($aivectraTag) {
+    $aivectraVersionNoV = $aivectraTag.TrimStart('v')
+    $aivectraArtifact = "aivectra-$aivectraVersionNoV.zip"
+    $aivectraArchive = Join-Path $tmp $aivectraArtifact
+    $aivectraStage = Join-Path $tmp 'aivectra'
+    $aivectraDest = Join-Path $dest 'aivectra'
+    Download-Asset $AiVectraRepo $aivectraTag $aivectraArtifact $aivectraArchive
+    Expand-Package $aivectraArchive $aivectraStage
+    New-Item -ItemType Directory -Force $aivectraDest, (Join-Path $dest 'bin') | Out-Null
+    Copy-Item -Path (Join-Path $aivectraStage '*') -Destination $aivectraDest -Recurse -Force
+    $aivectraCmd = Join-Path $aivectraStage 'bin\aivectra'
+    if (Test-Path $aivectraCmd) {
+      Copy-Item -Path $aivectraCmd -Destination (Join-Path $dest 'bin\aivectra') -Force
+    }
   }
 
   New-Item -ItemType Directory -Force (Join-Path $InstallRoot 'bin') | Out-Null

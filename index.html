@@ -3,84 +3,81 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AiLang — Deterministic AI-Native Programming</title>
+    <title>AiLang - Deterministic AI-Native Programming</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <header class="hero container">
+    <nav class="top-nav" aria-label="Primary">
+        <a href="#docs">Docs</a>
+        <a href="https://github.com/AiLangCore">GitHub</a>
+        <a href="https://github.com/sponsors/AiLangCore" class="sponsor-link">Sponsor</a>
+    </nav>
+
     <img src="assets/logo.png" alt="AiLang Logo" class="logo" />
-    <h1>AiLang</h1>
-    <p class="tagline">
-        Deterministic programming for AI-native systems.
-    </p>
+    <p class="tagline">A general-purpose, deterministic programming language for humans and AI agents building the same software.</p>
+    <p class="alpha-note">Current public alpha: AiLang 0.0.1-alpha.15, AiVM 0.0.1-alpha.11, AiVectra 0.0.1-alpha.10</p>
+
+    <section id="install" class="hero-install" aria-label="Install">
+        <div class="install-command">
+            <span>macOS and Linux</span>
+            <pre><code>curl -fsSL https://ailang.org/install.sh | sh</code></pre>
+        </div>
+        <div class="install-command">
+            <span>Windows PowerShell</span>
+            <pre><code>irm https://ailang.org/install.ps1 | iex</code></pre>
+        </div>
+    </section>
+
     <div class="actions">
-        <a href="#install" class="btn">Install</a>
-        <a href="#docs" class="btn">Documentation</a>
+        <a href="docs/quickstart.html" class="btn">Quickstart</a>
+        <a href="docs/releases.html" class="btn outline">Releases</a>
         <a href="https://github.com/sponsors/AiLangCore" class="btn sponsor">Sponsor</a>
-        <a href="https://github.com/AiLangCore" class="btn outline">GitHub</a>
     </div>
 </header>
 
 <main>
 
-<section id="install" class="container section install-section">
-    <h2>Install</h2>
-    <div class="install-grid">
-        <div>
-            <h3>macOS and Linux</h3>
-            <pre><code>curl -fsSL https://ailang.org/install.sh | sh</code></pre>
-            <p class="muted">
-                Installs the current stable toolchain into <code>~/.ailang</code>.
-            </p>
-        </div>
-        <div>
-            <h3>Windows PowerShell</h3>
-            <pre><code>irm https://ailang.org/install.ps1 | iex</code></pre>
-            <p class="muted">
-                Installs the current stable toolchain into <code>%USERPROFILE%\.ailang</code>.
-            </p>
-        </div>
+<section class="container section compact">
+    <h2>Toolchain</h2>
+    <div class="repo-list">
+        <a href="https://github.com/AiLangCore/AiLang">
+            <strong>ailang</strong>
+            <span>language, compiler, command-line toolset, core libraries, and SDK</span>
+        </a>
+        <a href="https://github.com/AiLangCore/AiVM">
+            <strong>aivm</strong>
+            <span>native C virtual machine for compiled AiLang programs and host syscalls</span>
+        </a>
+        <a href="https://github.com/AiLangCore/AiVectra">
+            <strong>aivectra</strong>
+            <span>vector UI toolkit and runtime libraries</span>
+        </a>
     </div>
-    <div class="install-details">
-        <h3>Channels</h3>
-        <pre><code>curl -fsSL https://ailang.org/install.sh | sh -s -- --channel alpha
-curl -fsSL https://ailang.org/install.sh | sh -s -- --version 0.0.1-alpha.10</code></pre>
-        <p class="muted">
-            The bootstrapper downloads prebuilt release artifacts, updates the local
-            toolchain pointer, and creates shims for <code>ailang</code>, <code>aivm</code>,
-            and <code>aivectra</code>.
-        </p>
-    </div>
+    <p class="muted">
+        The installer assembles the AiLang SDK, AiVM, and AiVectra from public
+        alpha release artifacts under <code>~/.ailang</code> and creates shims for
+        the command-line tools.
+    </p>
 </section>
 
 <section id="docs" class="container section docs-section">
     <div class="section-header">
         <h2>Documentation</h2>
-        <a href="https://github.com/AiLangCore/AiLang/tree/develop/Docs" class="text-link">All AiLang docs</a>
+        <a href="docs/quickstart.html" class="text-link">Start here</a>
     </div>
-    <div class="grid">
-        <div class="card">
-            <h3>Getting Started</h3>
-            <p>Build the local toolchain, run samples, scaffold projects, and verify deterministic output.</p>
-            <a href="https://github.com/AiLangCore/AiLang/blob/develop/Docs/Getting-Started.md">Read guide →</a>
-        </div>
-        <div class="card">
-            <h3>Installation and Versioning</h3>
-            <p>Git Flow release channels, component compatibility, and the cross-platform install layout.</p>
-            <a href="https://github.com/AiLangCore/AiLang/blob/develop/Docs/Installation-Versioning.md">Read contract →</a>
-        </div>
-        <div class="card">
-            <h3>Repository Split</h3>
-            <p>Ownership boundaries for AiLang, AiVM, and AiVectra during the public repository migration.</p>
-            <a href="https://github.com/AiLangCore/AiLang/blob/develop/Docs/Three-Repo-Migration.md">Read migration plan →</a>
-        </div>
+    <div class="link-grid">
+        <a href="docs/quickstart.html">AiLang Quickstart</a>
+        <a href="docs/install-versioning.html">Installation and Versioning</a>
+        <a href="docs/specs.html">Specifications</a>
+        <a href="docs/releases.html">Release Builds</a>
+        <a href="https://github.com/AiLangCore/AiLang">AiLang Source</a>
+        <a href="https://github.com/AiLangCore/AiVM">AiVM Source</a>
     </div>
-    <div class="doc-links">
-        <a href="https://github.com/AiLangCore/AiLang/tree/develop/SPEC">AiLang specs</a>
-        <a href="https://github.com/AiLangCore/AiVM">AiVM runtime</a>
-        <a href="https://github.com/AiLangCore/AiVectra/tree/develop/SPEC">AiVectra specs</a>
-        <a href="https://github.com/AiLangCore/AiLang/releases">Releases</a>
+    <div class="secondary-docs">
+        <span>AI and contributor procedures:</span>
+        <a href="docs/agent-contributor.html">Agent and contributor docs</a>
     </div>
 </section>
 
@@ -89,103 +86,18 @@ curl -fsSL https://ailang.org/install.sh | sh -s -- --version 0.0.1-alpha.10</co
         <div>
             <h2>Sponsor AiLangCore</h2>
             <p>
-                Sponsorship funds release infrastructure, cross-platform packaging,
-                documentation, and the AiVM/AiVectra migration work.
+                Sponsorship supports alpha builds, CI hardening, packaging,
+                documentation, and the AiVM/AiVectra migration.
             </p>
         </div>
         <a href="https://github.com/sponsors/AiLangCore" class="btn sponsor large">Sponsor on GitHub</a>
     </div>
 </section>
 
-<section class="container section">
-    <h2>Principles</h2>
-    <ul class="list">
-        <li>Semantic authority lives inside the language.</li>
-        <li>The host runtime is mechanical and replaceable.</li>
-        <li>Determinism is mandatory.</li>
-        <li>Specification governs implementation.</li>
-        <li>Golden tests are authoritative.</li>
-    </ul>
-</section>
-
-<section class="container section">
-    <h2>Architecture</h2>
-    <div class="architecture">
-        <div class="layer">
-            <strong>AiLang</strong>
-            <span>Language Semantics</span>
-        </div>
-        <div class="divider"></div>
-        <div class="layer">
-            <strong>AiVM</strong>
-            <span>Deterministic Execution</span>
-        </div>
-        <div class="divider"></div>
-        <div class="layer">
-            <strong>AiVectra</strong>
-            <span>Vector UI SDK</span>
-        </div>
-    </div>
-</section>
-
-<section class="container section">
-    <h2>The Stack</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>AiLang</h3>
-            <p>Spec-governed deterministic language core.</p>
-            <a href="https://github.com/AiLangCore/AiLang">Repository →</a>
-        </div>
-
-        <div class="card">
-            <h3>AiVM</h3>
-            <p>Minimal execution engine. Thin. Mechanical.</p>
-            <a href="https://github.com/AiLangCore/AiVM">Repository →</a>
-        </div>
-
-        <div class="card">
-            <h3>AiVectra</h3>
-            <p>Vector UI runtime for AI-generated interfaces.</p>
-            <a href="https://github.com/AiLangCore/AiVectra">Repository →</a>
-        </div>
-    </div>
-</section>
-
-<section class="container section">
-    <h2>Capabilities</h2>
-    <ul class="list two-column">
-        <li>CLI Applications</li>
-        <li>Web APIs</li>
-        <li>Self-Hosted Web Apps</li>
-        <li>Cross-Platform Execution</li>
-        <li>Embedded Linux Targets</li>
-        <li>Vector UI Applications</li>
-        <li>AI-Generated Code Friendly</li>
-    </ul>
-</section>
-
-<section class="container section">
-    <h2>Release Model</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>Git Flow</h3>
-            <p><code>develop</code> carries integration builds. Releases are cut from <code>main</code>.</p>
-        </div>
-        <div class="card">
-            <h3>Toolchain</h3>
-            <p>AiLang, AiVM, and AiVectra are versioned as compatible components.</p>
-        </div>
-        <div class="card">
-            <h3>Packages</h3>
-            <p>Homebrew, RPM, DEB, and Windows installers can wrap the same release artifacts later.</p>
-        </div>
-    </div>
-</section>
-
 </main>
 
 <footer class="container footer">
-    <p>© 2026 Todd Henderson</p>
+    <p>&copy; 2026 Todd Henderson</p>
 </footer>
 
 </body>
