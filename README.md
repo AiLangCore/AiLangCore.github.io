@@ -17,7 +17,7 @@ Open `index.html` directly in a browser.
 
 - AiLang `v0.0.1-alpha.24`
 - AiVM `v0.0.1-alpha.16`
-- AiVectra `v0.0.1-alpha.11`
+- AiVectra `v0.0.1-alpha.12`
 
 The install scripts assemble these tools from their release artifacts through
 the alpha channel.
