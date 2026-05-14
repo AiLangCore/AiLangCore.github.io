@@ -68,13 +68,15 @@ ls AGENTS.md CLAUDE.md project.aiproj src/app.aos</code></pre>
     <section>
         <h2>Codex Project</h2>
         <p>
-            Codex is the default agent target. It uses <code>AGENTS.md</code>.
-            Start Codex from the project root so it sees the manifest, source,
-            and agent rules.
+            Install the AiLang Codex skill so Codex knows the install, init,
+            build, run, and publish workflow before the project exists. After
+            the project is created, Codex uses the generated <code>AGENTS.md</code>.
         </p>
-        <pre><code>ailang init ./hello-codex --agent codex
-cd ./hello-codex
-codex</code></pre>
+        <pre><code>git clone https://github.com/AiLangCore/ailang-codex-skill.git
+cd ailang-codex-skill
+./scripts/install.sh</code></pre>
+        <p>Then tell Codex:</p>
+        <pre><code>Use $ailang to create a new AiLang project named hello-codex and run it.</code></pre>
     </section>
 
     <section>
