@@ -187,9 +187,6 @@ fi
 if [ -x "\$CURRENT/$target" ]; then
   exec "\$CURRENT/$target" "\$@"
 fi
-if [ "$target" = "ailang" ] && [ -x "\$CURRENT/airun" ]; then
-  exec "\$CURRENT/airun" "\$@"
-fi
 echo "missing installed executable: $target" >&2
 exit 127
 EOF
@@ -210,11 +207,7 @@ trap 'rm -rf "$TMP_DIR"' EXIT INT TERM
 
 ARTIFACT="ailang-$VERSION_NO_V-$RID.tar.gz"
 URL="https://github.com/$REPO/releases/download/$TAG/$ARTIFACT"
-if ! fetch "$URL" "$TMP_DIR/$ARTIFACT"; then
-  ARTIFACT="airun-$VERSION_NO_V-$RID.tar.gz"
-  URL="https://github.com/$REPO/releases/download/$TAG/$ARTIFACT"
-  fetch "$URL" "$TMP_DIR/$ARTIFACT"
-fi
+fetch "$URL" "$TMP_DIR/$ARTIFACT"
 
 CHECKSUMS_URL="https://github.com/$REPO/releases/download/$TAG/checksums.txt"
 if fetch "$CHECKSUMS_URL" "$TMP_DIR/checksums.txt" 2>/dev/null; then
@@ -262,7 +255,6 @@ fi
 
 ln -sfn "$DEST" "$INSTALL_ROOT/current"
 write_shim ailang ailang
-write_shim airun airun
 write_shim aivm aivm
 write_shim aivectra aivectra
 

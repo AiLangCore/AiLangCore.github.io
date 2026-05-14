@@ -81,7 +81,6 @@ set ROOT=%~dp0..
 set CURRENT=%ROOT%\current
 if exist "%CURRENT%\bin\$Target.exe" "%CURRENT%\bin\$Target.exe" %*
 if exist "%CURRENT%\$Target.exe" "%CURRENT%\$Target.exe" %*
-if "$Target"=="ailang" if exist "%CURRENT%\airun.exe" "%CURRENT%\airun.exe" %*
 echo missing installed executable: $Target 1>&2
 exit /b 127
 "@
@@ -97,14 +96,7 @@ try {
   $artifact = "ailang-$versionNoV-$rid.zip"
   $url = "https://github.com/$Repo/releases/download/$tag/$artifact"
   $archive = Join-Path $tmp $artifact
-  try {
-    Invoke-WebRequest -Uri $url -OutFile $archive
-  } catch {
-    $artifact = "airun-$versionNoV-$rid.zip"
-    $url = "https://github.com/$Repo/releases/download/$tag/$artifact"
-    $archive = Join-Path $tmp $artifact
-    Invoke-WebRequest -Uri $url -OutFile $archive
-  }
+  Invoke-WebRequest -Uri $url -OutFile $archive
 
   $dest = Join-Path $InstallRoot "toolchains\$versionNoV"
   Remove-Item -Recurse -Force $dest -ErrorAction SilentlyContinue
@@ -150,7 +142,6 @@ try {
   if (Test-Path $current) { Remove-Item -Recurse -Force $current }
   New-Item -ItemType Junction -Path $current -Target $dest | Out-Null
   New-Shim ailang ailang
-  New-Shim airun airun
   New-Shim aivm aivm
   New-Shim aivectra aivectra
 
