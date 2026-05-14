@@ -15,8 +15,8 @@ Open `index.html` directly in a browser.
 
 ## Public Alpha Set
 
-- AiLang `v0.0.1-alpha.17`
-- AiVM `v0.0.1-alpha.13`
+- AiLang `v0.0.1-alpha.21`
+- AiVM `v0.0.1-alpha.14`
 - AiVectra `v0.0.1-alpha.11`
 
 The install scripts assemble these tools from their release artifacts through
