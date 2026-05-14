@@ -15,7 +15,7 @@ Open `index.html` directly in a browser.
 
 ## Public Alpha Set
 
-- AiLang `v0.0.1-alpha.16`
+- AiLang `v0.0.1-alpha.17`
 - AiVM `v0.0.1-alpha.12`
 - AiVectra `v0.0.1-alpha.11`
 
