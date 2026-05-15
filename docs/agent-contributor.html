@@ -34,6 +34,23 @@ cd ailang-codex-skill
 
     <section>
         <h2>Contributor Paths</h2>
+        <p>
+            Core development uses separate repositories. Clone them as siblings
+            so repo-local scripts can find the installed SDK, package registry,
+            and source checkouts consistently.
+        </p>
+        <pre><code>mkdir AiLangCore
+cd AiLangCore
+git clone https://github.com/AiLangCore/AiLang.git
+git clone https://github.com/AiLangCore/AiVM.git
+git clone https://github.com/AiLangCore/AiVectra.git
+git clone https://github.com/AiLangCore/ailang-packages.git
+git clone https://github.com/AiLangCore/ailang-core-packages.git
+git clone https://github.com/AiLangCore/ailang-examples.git
+
+git -C AiLang checkout develop
+git -C AiVM checkout develop
+git -C AiVectra checkout develop</code></pre>
         <div class="link-grid">
             <a href="https://github.com/AiLangCore/AiLang/blob/develop/Docs/Getting-Started.md">Contributor build guide</a>
             <a href="https://github.com/AiLangCore/AiLang/blob/develop/Docs/Three-Repo-Migration.md">Repository split</a>
@@ -45,9 +62,22 @@ cd ailang-codex-skill
 
     <section>
         <h2>Repository Verification</h2>
-        <pre><code>cd AiLang &amp;&amp; ./test.sh
-cd AiVM &amp;&amp; ./test-aivm-c.sh
-cd AiVectra &amp;&amp; ./scripts/test-all.sh</code></pre>
+        <p>
+            Run each verification command from the workspace root. Keep the
+            generated build outputs uncommitted.
+        </p>
+        <pre><code>(cd AiLang &amp;&amp; ./test.sh)
+(cd AiVM &amp;&amp; ./test-aivm-c.sh)
+(cd AiVectra &amp;&amp; ./scripts/test-all.sh)
+(cd ailang-examples &amp;&amp; ./scripts/validate-examples.sh)</code></pre>
+        <p>
+            Host screenshot parity is optional because it needs local GUI
+            permissions and a screenshot helper.
+        </p>
+        <pre><code>cd AiVectra
+AIVECTRA_SCREENSHOT_TEST=1 \
+AIVECTRA_SCREENSHOT_TOOL=/path/to/take_screenshot.py \
+./scripts/test-all.sh</code></pre>
     </section>
 </main>
 
