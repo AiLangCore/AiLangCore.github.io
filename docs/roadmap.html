@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AiLangCore Roadmap</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<header class="container doc-page-header">
+    <nav class="top-nav" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="quickstart.html">Quickstart</a>
+        <a href="releases.html">Releases</a>
+        <a href="https://github.com/sponsors/AiLangCore" class="sponsor-link">Sponsor</a>
+    </nav>
+    <h1>Roadmap</h1>
+    <p class="tagline">Alpha to beta to 1.0 for AiLang, AiVM, and AiVectra.</p>
+</header>
+
+<main class="container doc-page">
+    <section>
+        <h2>Alpha</h2>
+        <p>
+            The current work is about making AiLangCore installable,
+            understandable, and demoable. Contracts may still change freely.
+        </p>
+        <ul>
+            <li>Keep the three-repo architecture clear.</li>
+            <li>Keep public alpha SDK artifacts installable.</li>
+            <li>Keep <code>ailang init</code>, <code>build</code>, <code>run</code>, and <code>publish</code> coherent.</li>
+            <li>Prove package restore through the curated registry.</li>
+            <li>Keep native AiVM memory behavior deterministic.</li>
+            <li>Keep at least one AiVectra sample runnable for demos.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Beta</h2>
+        <p>
+            Beta means the project is credible for outside contributors,
+            conference demos, and sponsor review.
+        </p>
+        <ul>
+            <li>Install flow works on macOS, Linux, and Windows.</li>
+            <li>Native AiVM artifacts are released for supported hosts.</li>
+            <li>Package restore and publishing are documented.</li>
+            <li>Spec ownership is clear and duplicate specs are removed.</li>
+            <li>Resource limits and error codes are stable enough for beta.</li>
+            <li>AiVectra has a functional documented sample app.</li>
+        </ul>
+        <p>
+            <a href="https://github.com/AiLangCore/AiLang/blob/develop/BETA_READINESS.md">View the full beta checklist.</a>
+        </p>
+    </section>
+
+    <section>
+        <h2>Release Candidate</h2>
+        <ul>
+            <li>Semantic specs are internally consistent.</li>
+            <li>CLI contracts are frozen for 1.0.</li>
+            <li>Package registry format is frozen for 1.0.</li>
+            <li>Release automation and install/update flows are repeatable.</li>
+            <li>Cross-platform CI is green.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>1.0</h2>
+        <ul>
+            <li>Native AiVM is the default runtime.</li>
+            <li>SDK layout and version selection are stable.</li>
+            <li>Package restore is stable.</li>
+            <li>AiVectra has a documented app model.</li>
+            <li>Human and agent project workflows are documented.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Sponsorship Focus</h2>
+        <p>
+            Sponsorship funds CI and release automation, deterministic test
+            coverage, cross-platform packaging, documentation, native AiVM
+            runtime hardening, and AiVectra runtime stabilization.
+        </p>
+        <p><a href="https://github.com/sponsors/AiLangCore">Sponsor on GitHub.</a></p>
+    </section>
+</main>
+
+<footer class="container footer">
+    <p>&copy; 2026 Todd Henderson</p>
+</footer>
+
+</body>
+</html>

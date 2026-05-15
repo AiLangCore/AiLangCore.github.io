@@ -8,6 +8,7 @@ This repository publishes the public AiLangCore website.
 - Public install scripts.
 - Human-facing documentation entry points.
 - Release and sponsorship links.
+- Public roadmap.
 
 ## Local Preview
 
