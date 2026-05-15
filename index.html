@@ -17,7 +17,7 @@
 
     <img src="assets/logo.png" alt="AiLang Logo" class="logo" />
     <p class="tagline">A general-purpose, deterministic programming language for humans and AI agents building the same software.</p>
-    <p class="alpha-note">Current public alpha: AiLang 0.0.1-alpha.24, AiVM 0.0.1-alpha.16, AiVectra 0.0.1-alpha.12</p>
+    <p class="alpha-note">Current public alpha: AiLang 0.0.1-alpha.24, AiVM 0.0.1-alpha.16, AiVectra 0.0.1-alpha.13</p>
 
     <section id="install" class="hero-install" aria-label="Install">
         <div class="install-command">
@@ -38,6 +38,21 @@
 </header>
 
 <main>
+
+<section class="container section compact">
+    <h2>First Project</h2>
+    <pre><code>ailang init ./hello-ai --agent codex
+cd ./hello-ai
+ailang package add aivectra
+ailang template list projects
+ailang build .
+ailang run .</code></pre>
+    <p class="muted">
+        AiLang projects are built for human review and agent automation: a
+        project file, source files, package lockfile, and generated agent
+        instructions all live in the repository.
+    </p>
+</section>
 
 <section class="container section compact">
     <h2>Toolchain</h2>

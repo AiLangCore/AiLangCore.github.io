@@ -45,7 +45,7 @@ aivectra --help</code></pre>
 
     <section>
         <h2>Create an Agent-Friendly Project</h2>
-        <pre><code>ailang init ./hello-ailang --template cli
+        <pre><code>ailang init ./hello-ailang --template cli --agent codex
 cd ./hello-ailang</code></pre>
         <p>
             The generated project gives both people and agents a clear manifest,
@@ -113,6 +113,19 @@ cat project.aiproj</code></pre>
     </section>
 
     <section>
+        <h2>Add AiVectra</h2>
+        <p>
+            AiVectra is the vector UI package for AiLang. Adding it restores
+            the library, package tool, and package templates into the project.
+        </p>
+        <pre><code>ailang package add aivectra
+ailang package list
+ailang template list projects
+ailang template list files
+ailang aivectra --help</code></pre>
+    </section>
+
+    <section>
         <h2>Build</h2>
         <pre><code>ailang build . --out ./build</code></pre>
         <p>
@@ -123,7 +136,8 @@ cat project.aiproj</code></pre>
 
     <section>
         <h2>Run</h2>
-        <pre><code>aivm ./build/app.aibc1</code></pre>
+        <pre><code>ailang run .
+aivm ./build/app.aibc1</code></pre>
         <p>
             AiLang compiles to AiBC bytecode. AiVM is the native C runtime that
             executes the compiled program.
