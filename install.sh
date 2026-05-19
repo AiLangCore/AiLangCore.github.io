@@ -129,13 +129,13 @@ resolve_repo_version() {
   fi
 
   if [ "$CHANNEL" = "stable" ]; then
-    fetch_stdout "https://api.github.com/repos/$repo/releases/latest" \
+    fetch_stdout "https://api.github.com/repos/$repo/releases/latest" 2>/dev/null \
       | sed -n 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
       | head -n 1
     return 0
   fi
 
-  fetch_stdout "https://api.github.com/repos/$repo/releases?per_page=100" \
+  fetch_stdout "https://api.github.com/repos/$repo/releases?per_page=100" 2>/dev/null \
     | sed -n 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*-'$CHANNEL'\.[^"]*\)".*/\1/p' \
     | head -n 1
 }

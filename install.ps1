@@ -79,8 +79,14 @@ function New-Shim {
 @echo off
 set ROOT=%~dp0..
 set CURRENT=%ROOT%\current
-if exist "%CURRENT%\bin\$Target.exe" "%CURRENT%\bin\$Target.exe" %*
-if exist "%CURRENT%\$Target.exe" "%CURRENT%\$Target.exe" %*
+if exist "%CURRENT%\bin\$Target.exe" (
+  "%CURRENT%\bin\$Target.exe" %*
+  exit /b %ERRORLEVEL%
+)
+if exist "%CURRENT%\$Target.exe" (
+  "%CURRENT%\$Target.exe" %*
+  exit /b %ERRORLEVEL%
+)
 echo missing installed executable: $Target 1>&2
 exit /b 127
 "@
