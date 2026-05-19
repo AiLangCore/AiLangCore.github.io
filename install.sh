@@ -5,7 +5,7 @@ REPO="${AILANG_REPO:-AiLangCore/AiLang}"
 AIVM_REPO="${AIVM_REPO:-AiLangCore/AiVM}"
 AIVECTRA_REPO="${AIVECTRA_REPO:-AiLangCore/AiVectra}"
 INSTALL_ROOT="${AILANG_INSTALL_ROOT:-$HOME/.ailang}"
-CHANNEL="${AILANG_CHANNEL:-alpha}"
+CHANNEL="${AILANG_CHANNEL:-beta}"
 VERSION="${AILANG_VERSION:-}"
 AIVM_VERSION="${AIVM_VERSION:-}"
 AIVECTRA_VERSION="${AIVECTRA_VERSION:-}"
@@ -21,7 +21,7 @@ Environment:
   AILANG_VERSION      Exact version or tag to install.
   AIVM_VERSION         Exact AiVM version or tag to install.
   AIVECTRA_VERSION     Exact AiVectra version or tag to install.
-  AILANG_CHANNEL      alpha, beta, rc, or stable. Default: alpha.
+  AILANG_CHANNEL      alpha, beta, rc, or stable. Default: beta.
   AILANG_INSTALL_ROOT Install root. Default: ~/.ailang
 EOF
 }

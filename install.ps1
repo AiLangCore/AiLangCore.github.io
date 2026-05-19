@@ -1,7 +1,7 @@
 param(
   [string]$Version = $env:AILANG_VERSION,
   [ValidateSet('stable', 'alpha', 'beta', 'rc')]
-  [string]$Channel = $(if ($env:AILANG_CHANNEL) { $env:AILANG_CHANNEL } else { 'alpha' }),
+  [string]$Channel = $(if ($env:AILANG_CHANNEL) { $env:AILANG_CHANNEL } else { 'beta' }),
   [string]$InstallRoot = $(if ($env:AILANG_INSTALL_ROOT) { $env:AILANG_INSTALL_ROOT } else { Join-Path $HOME '.ailang' }),
   [string]$Repo = $(if ($env:AILANG_REPO) { $env:AILANG_REPO } else { 'AiLangCore/AiLang' }),
   [string]$AivmVersion = $env:AIVM_VERSION,
