@@ -41,8 +41,20 @@ function Resolve-RepoTag {
     $latest = Invoke-RestMethod "https://api.github.com/repos/$RepoName/releases/latest"
     return $latest.tag_name
   }
-  $releases = Invoke-RestMethod "https://api.github.com/repos/$RepoName/releases?per_page=100"
+  $releases = @()
+  try {
+    $releases = Invoke-RestMethod "https://api.github.com/repos/$RepoName/releases?per_page=100"
+  } catch {
+    $releases = @()
+  }
   $match = $releases | Where-Object { $_.tag_name -match "-$Channel\." } | Select-Object -First 1
+  if (-not $match) {
+    $atom = Invoke-WebRequest "https://github.com/$RepoName/releases.atom"
+    $matches = [regex]::Matches($atom.Content, '<title>(v[^<]*-' + [regex]::Escape($Channel) + '\.[^<]*)</title>')
+    if ($matches.Count -gt 0) {
+      return $matches[0].Groups[1].Value
+    }
+  }
   if (-not $match) {
     throw "could not resolve release for $RepoName channel: $Channel"
   }
@@ -75,7 +87,24 @@ function Download-Asset {
 function New-Shim {
   param([string]$Name, [string]$Target)
   $path = Join-Path $InstallRoot "bin\$Name.cmd"
-  $content = @"
+  if ($Name -eq 'aivectra') {
+    $content = @"
+@echo off
+set ROOT=%~dp0..
+set CURRENT=%ROOT%\current
+if exist "%CURRENT%\bin\aivectra.exe" (
+  "%CURRENT%\bin\aivectra.exe" %*
+  exit /b %ERRORLEVEL%
+)
+if exist "%CURRENT%\aivectra\src\AiVectra.Cli\project.aiproj" (
+  "%CURRENT%\bin\ailang.exe" run "%CURRENT%\aivectra\src\AiVectra.Cli" -- %*
+  exit /b %ERRORLEVEL%
+)
+echo missing installed executable: aivectra 1>&2
+exit /b 127
+"@
+  } else {
+    $content = @"
 @echo off
 set ROOT=%~dp0..
 set CURRENT=%ROOT%\current
@@ -90,6 +119,7 @@ if exist "%CURRENT%\$Target.exe" (
 echo missing installed executable: $Target 1>&2
 exit /b 127
 "@
+  }
   Set-Content -Path $path -Value $content -Encoding ASCII
 }
 
@@ -124,6 +154,14 @@ try {
     if (Test-Path $aivmExe) {
       Copy-Item -Path $aivmExe -Destination (Join-Path $dest 'bin\aivm.exe') -Force
     }
+  }
+  $bundledAivm = Join-Path $dest 'bin\aivm.exe'
+  $aivmRuntime = Join-Path $dest 'bin\aivm-runtime.exe'
+  $ridAivm = Join-Path $dest "runtimes\$rid\aivm.exe"
+  if (-not (Test-Path $bundledAivm) -and (Test-Path $aivmRuntime)) {
+    Copy-Item -Path $aivmRuntime -Destination $bundledAivm -Force
+  } elseif (-not (Test-Path $bundledAivm) -and (Test-Path $ridAivm)) {
+    Copy-Item -Path $ridAivm -Destination $bundledAivm -Force
   }
 
   $aivectraTag = Resolve-RepoTag $AiVectraRepo $AiVectraVersion

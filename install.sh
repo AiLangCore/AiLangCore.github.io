@@ -84,6 +84,13 @@ fetch_stdout() {
   fi
 }
 
+resolve_repo_version_from_atom() {
+  repo="$1"
+  fetch_stdout "https://github.com/$repo/releases.atom" 2>/dev/null \
+    | sed -n 's/.*<title>\(v[^<]*-'$CHANNEL'\.[^<]*\)<\/title>.*/\1/p' \
+    | head -n 1
+}
+
 detect_rid() {
   os="$(uname -s)"
   arch="$(uname -m)"
@@ -135,9 +142,14 @@ resolve_repo_version() {
     return 0
   fi
 
-  fetch_stdout "https://api.github.com/repos/$repo/releases?per_page=100" 2>/dev/null \
+  tag="$(fetch_stdout "https://api.github.com/repos/$repo/releases?per_page=100" 2>/dev/null \
     | sed -n 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*-'$CHANNEL'\.[^"]*\)".*/\1/p' \
-    | head -n 1
+    | head -n 1)"
+  if [ -n "$tag" ]; then
+    printf '%s\n' "$tag"
+    return 0
+  fi
+  resolve_repo_version_from_atom "$repo"
 }
 
 resolve_version() {
@@ -236,6 +248,13 @@ if [ -n "$AIVM_TAG" ]; then
     cp "$AIVM_STAGE/bin/aivm" "$DEST/bin/aivm"
     chmod +x "$DEST/bin/aivm"
   fi
+fi
+if [ ! -x "$DEST/bin/aivm" ] && [ -x "$DEST/bin/aivm-runtime" ]; then
+  cp "$DEST/bin/aivm-runtime" "$DEST/bin/aivm"
+  chmod +x "$DEST/bin/aivm"
+elif [ ! -x "$DEST/bin/aivm" ] && [ -x "$DEST/runtimes/$RID/aivm" ]; then
+  cp "$DEST/runtimes/$RID/aivm" "$DEST/bin/aivm"
+  chmod +x "$DEST/bin/aivm"
 fi
 
 AIVECTRA_TAG="$(resolve_repo_version "$AIVECTRA_REPO" "$AIVECTRA_VERSION")"
