@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AiLang Demo Path</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<header class="container doc-page-header">
+    <nav class="top-nav" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="quickstart.html">Quickstart</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="https://github.com/sponsors/AiLangCore" class="sponsor-link">Sponsor</a>
+    </nav>
+    <h1>Demo Path</h1>
+    <p class="tagline">A short path for evaluating AiLangCore in front of people: install, create, build, run, and inspect.</p>
+</header>
+
+<main class="container doc-page">
+    <section>
+        <h2>1. Install the SDK</h2>
+        <p>macOS and Linux:</p>
+        <pre><code>curl -fsSL https://ailang.codes/install.sh | sh
+export PATH="$HOME/.ailang/bin:$PATH"</code></pre>
+        <p>Windows PowerShell:</p>
+        <pre><code>irm https://ailang.codes/install.ps1 | iex</code></pre>
+    </section>
+
+    <section>
+        <h2>2. Verify the Toolchain</h2>
+        <pre><code>ailang --version
+aivm --version
+aivm-debug --version
+aivectra help</code></pre>
+        <p>
+            <code>ailang</code> is the compiler and SDK command, <code>aivm</code>
+            is the native C runtime, and <code>aivectra</code> is the UI toolkit.
+        </p>
+    </section>
+
+    <section>
+        <h2>3. Create an Agent-Ready Project</h2>
+        <pre><code>ailang init ./hello-ai --template cli --agent codex
+cd ./hello-ai
+find . -maxdepth 3 -type f | sort</code></pre>
+        <p>
+            The generated project includes the manifest, source files, and
+            agent instructions needed for Codex to continue work in the same
+            repository a human reviews.
+        </p>
+    </section>
+
+    <section>
+        <h2>4. Build and Run</h2>
+        <pre><code>ailang build .
+ailang run .
+ailang test</code></pre>
+        <p>
+            AiLang compiles to deterministic AiBC bytecode, which is executed
+            by AiVM.
+        </p>
+    </section>
+
+    <section>
+        <h2>5. Add a Package</h2>
+        <pre><code>ailang package add aivectra
+ailang package list
+ailang template list projects
+ailang template list files</code></pre>
+        <p>
+            Packages can provide libraries, tools, and templates. AiVectra uses
+            that shape so a UI package can bring project templates and package
+            tools with it.
+        </p>
+    </section>
+
+    <section>
+        <h2>6. Review the System</h2>
+        <div class="link-grid">
+            <a href="quickstart.html">Quickstart</a>
+            <a href="releases.html">Release Builds</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="specs.html">Specifications</a>
+            <a href="agent-contributor.html">Agent and Contributor Docs</a>
+            <a href="https://github.com/AiLangCore/ailang-examples">Examples</a>
+        </div>
+    </section>
+</main>
+
+<footer class="container footer">
+    <p>&copy; 2026 Todd Henderson</p>
+</footer>
+
+</body>
+</html>
