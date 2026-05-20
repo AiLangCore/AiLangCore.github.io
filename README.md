@@ -14,11 +14,11 @@ This repository publishes the public AiLangCore website.
 
 Open `index.html` directly in a browser.
 
-## Public Alpha Set
+## Public Beta Set
 
-- AiLang `v0.0.1-alpha.25`
-- AiVM `v0.0.1-alpha.17`
-- AiVectra `v0.0.1-alpha.13`
+- AiLang `v0.0.1-beta.6`
+- AiVM `v0.0.1-beta.1`
+- AiVectra `v0.0.1-beta.1`
 
 The install scripts assemble these tools from their release artifacts through
-the alpha channel.
+the beta channel.
