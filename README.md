@@ -10,6 +10,16 @@ This repository publishes the public AiLangCore website.
 - Release and sponsorship links.
 - Public roadmap.
 
+## Status
+
+This repository uses `main` as the public GitHub Pages branch. Website changes
+are published from `main`; release artifacts remain owned by the individual
+AiLang, AiVM, and AiVectra repositories.
+
+Public roadmap:
+
+- https://ailang.codes/docs/roadmap.html
+
 ## Local Preview
 
 Open `index.html` directly in a browser.
