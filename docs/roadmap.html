@@ -21,18 +21,34 @@
 
 <main class="container doc-page">
     <section>
-        <h2>Alpha</h2>
+        <h2>Current Status</h2>
         <p>
-            The current work is about making AiLangCore installable,
-            understandable, and demoable. Contracts may still change freely.
+            AiLangCore is in public beta hardening. The current beta builds are
+            AiLang 0.0.1-beta.6, AiVM 0.0.1-beta.1, and AiVectra
+            0.0.1-beta.1. The project is usable for demos and early evaluation,
+            but contracts may still change before the first stable release.
         </p>
         <ul>
-            <li>Keep the three-repo architecture clear.</li>
-            <li>Keep public alpha SDK artifacts installable.</li>
-            <li>Keep <code>ailang init</code>, <code>build</code>, <code>run</code>, and <code>publish</code> coherent.</li>
+            <li>Human install flow uses the public SDK installer.</li>
+            <li>Agent project setup starts from <code>ailang init --agent codex</code>.</li>
+            <li>Contributor work is split across AiLang, AiVM, AiVectra, packages, examples, and website repositories.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Alpha</h2>
+        <p>
+            Alpha proved the split project shape and public artifact flow.
+            Completed alpha work made AiLangCore installable, understandable,
+            and demoable enough to enter beta hardening.
+        </p>
+        <ul>
+            <li>Separate AiLang, AiVM, and AiVectra ownership.</li>
+            <li>Publish installable SDK artifacts.</li>
+            <li>Define <code>ailang init</code>, <code>build</code>, <code>run</code>, <code>test</code>, and <code>publish</code> workflows.</li>
             <li>Prove package restore through the curated registry.</li>
-            <li>Keep native AiVM memory behavior deterministic.</li>
-            <li>Keep at least one AiVectra sample runnable for demos.</li>
+            <li>Document native AiVM memory and syscall discipline.</li>
+            <li>Move public examples into a dedicated examples repository.</li>
         </ul>
     </section>
 
@@ -43,12 +59,13 @@
             conference demos, and sponsor review.
         </p>
         <ul>
-            <li>Install flow works on macOS, Linux, and Windows.</li>
-            <li>Native AiVM artifacts are released for supported hosts.</li>
-            <li>Package restore and publishing are documented.</li>
-            <li>Spec ownership is clear and duplicate specs are removed.</li>
-            <li>Resource limits and error codes are stable enough for beta.</li>
-            <li>AiVectra has a functional documented sample app.</li>
+            <li>Install flow is continuously verified on macOS, Linux, and Windows.</li>
+            <li>Deterministic golden tests are stable across supported hosts.</li>
+            <li>Native AiVM artifacts are released for supported targets.</li>
+            <li>Package restore, package tools, and templates are documented and tested.</li>
+            <li>Spec ownership is clear and duplicate specs are removed or replaced with pointers.</li>
+            <li>Resource limits, error codes, and production/debug runtime behavior are stable enough for external users.</li>
+            <li>AiVectra has a functional documented sample app with real UI validation.</li>
         </ul>
         <p>
             <a href="https://github.com/AiLangCore/AiLang/blob/develop/BETA_READINESS.md">View the full beta checklist.</a>
@@ -57,17 +74,25 @@
 
     <section>
         <h2>Release Candidate</h2>
+        <p>
+            Release candidates are for contract freezing and packaging
+            reliability, not architectural churn.
+        </p>
         <ul>
             <li>Semantic specs are internally consistent.</li>
             <li>CLI contracts are frozen for 1.0.</li>
             <li>Package registry format is frozen for 1.0.</li>
             <li>Release automation and install/update flows are repeatable.</li>
-            <li>Cross-platform CI is green.</li>
+            <li>Cross-platform CI and release CD are green from clean runners.</li>
         </ul>
     </section>
 
     <section>
         <h2>1.0</h2>
+        <p>
+            Version 1.0 is the first stable promise for project files, CLI
+            behavior, SDK layout, package restore, and runtime contracts.
+        </p>
         <ul>
             <li>Native AiVM is the default runtime.</li>
             <li>SDK layout and version selection are stable.</li>
@@ -84,6 +109,14 @@
             coverage, cross-platform packaging, documentation, native AiVM
             runtime hardening, and AiVectra runtime stabilization.
         </p>
+        <ul>
+            <li>CI/build infrastructure for macOS, Linux, Windows, and future mobile targets.</li>
+            <li>Release automation for signed, reproducible SDK and VM artifacts.</li>
+            <li>Deterministic compiler, VM, package, and UI regression suites.</li>
+            <li>Documentation for human developers, AI agents, and contributors.</li>
+            <li>Native AiVM production hardening, profiling, debugging, and resource-limit work.</li>
+            <li>AiVectra runtime validation so generated UI can be evaluated by agents and humans.</li>
+        </ul>
         <p><a href="https://github.com/sponsors/AiLangCore">Sponsor on GitHub.</a></p>
     </section>
 </main>

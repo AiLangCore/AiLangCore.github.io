@@ -258,6 +258,29 @@ h2 {
     color: inherit;
 }
 
+.focus-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.focus-grid div {
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+}
+
+.focus-grid strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #f2f6fb;
+    font-size: 1.05rem;
+    text-transform: none;
+}
+
+.focus-grid span {
+    color: var(--muted);
+}
+
 .sponsor-section {
     padding: 56px 0;
 }
@@ -279,6 +302,15 @@ h2 {
 .sponsor-panel p {
     color: var(--muted);
     max-width: 640px;
+}
+
+.funding-list {
+    margin: 16px 0 0 18px;
+    color: var(--muted);
+}
+
+.funding-list li + li {
+    margin-top: 4px;
 }
 
 .footer {
@@ -394,7 +426,8 @@ h2 {
     }
 
     .link-grid,
-    .repo-list {
+    .repo-list,
+    .focus-grid {
         grid-template-columns: 1fr;
     }
 
