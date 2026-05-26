@@ -34,7 +34,20 @@ function formatDate(value) {
     return '';
   }
 
-  const date = new Date(value);
+  if (value instanceof Date) {
+    return value.toLocaleDateString('en-US', {
+      timeZone: 'UTC',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  const input = String(value);
+  const dateParts = input.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  const date = dateParts
+    ? new Date(Number(dateParts[1]), Number(dateParts[2]) - 1, Number(dateParts[3]))
+    : new Date(input);
   if (Number.isNaN(date.getTime())) {
     throw new Error(`Invalid article date: ${value}`);
   }
@@ -44,6 +57,20 @@ function formatDate(value) {
     month: 'long',
     day: 'numeric'
   });
+}
+
+function stripDuplicateTitleHeading(content, title) {
+  const normalizedTitle = title.trim().replace(/\s+/g, ' ').toLowerCase();
+  const headingMatch = content.match(/^\s*#\s+(.+?)\s*#*\s*(?:\r?\n|$)/);
+
+  if (!headingMatch) {
+    return content;
+  }
+
+  const normalizedHeading = headingMatch[1].trim().replace(/\s+/g, ' ').toLowerCase();
+  return normalizedHeading === normalizedTitle
+    ? content.slice(headingMatch[0].length)
+    : content;
 }
 
 function copyStaticSite() {
@@ -169,7 +196,7 @@ function readArticles() {
         description: data.description || '',
         date: data.date || null,
         author: data.author || '',
-        contentHtml: marked(content)
+        contentHtml: marked(stripDuplicateTitleHeading(content, data.title || slug))
       };
     })
     .sort((left, right) => {
