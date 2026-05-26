@@ -22,7 +22,38 @@ Public roadmap:
 
 ## Local Preview
 
-Open `index.html` directly in a browser.
+Install the site dependencies once:
+
+```bash
+npm ci
+```
+
+Build the static site:
+
+```bash
+npm run build
+```
+
+Open `_site/index.html` directly in a browser.
+
+## Articles
+
+Article source files live in `_articles/*.md`. Each article should use YAML
+front matter:
+
+```md
+---
+title: "Article title"
+description: "Short summary shown on the article index"
+date: 2026-05-26
+author: "Author name"
+---
+
+Article body in Markdown.
+```
+
+Pushing to `main` runs the GitHub Pages workflow, builds `_site`, and publishes
+the generated article pages.
 
 ## Public Beta Set
 
