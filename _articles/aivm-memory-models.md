@@ -7,6 +7,8 @@ author: "Todd Henderson"
 
 # Garbage Collection vs Deterministic Memory Regions in AiVM
 
+![image](images/memory_managment.png)
+
 Modern managed runtimes such as the JVM, CLR, Mono SGen, Go, and JavaScript engines rely heavily on sophisticated garbage collectors. These systems are optimized for large, long-running shared heaps with highly dynamic allocation patterns.
 
 AiVM is taking a different path.
