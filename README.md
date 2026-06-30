@@ -60,9 +60,10 @@ the generated article pages.
 - AiLang SDK `v0.0.1-beta.22`
 - AiVM `v0.0.1-rc.3`
 - Official target packages:
-  - `target-aios-gui` / `target-aios-service` `v0.0.1-alpha.4`
+  - `target-aios-gui` / `target-aios-service` `v0.0.1-alpha.5`
   - `target-wasm` `v0.0.1-alpha.3`
-  - `target-macos`, `target-linux`, `target-windows` `v0.0.1-alpha.2`
+  - `target-linux` `v0.0.1-alpha.3`
+  - `target-macos`, `target-windows` `v0.0.1-alpha.2`
 
 The install scripts assemble these tools from their release artifacts through
 the beta channel. Target packages are restored through the curated package
