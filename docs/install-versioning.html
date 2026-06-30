@@ -25,7 +25,7 @@
   bin/
   toolchains/
     local/
-    0.0.1-beta.6/
+    0.0.1-beta.22/
   current</code></pre>
         <p>The shims in <code>~/.ailang/bin</code> route commands to the selected toolchain.</p>
     </section>
@@ -34,8 +34,25 @@
         <h2>Release Channels</h2>
         <pre><code>curl -fsSL https://ailang.codes/install.sh | sh
 curl -fsSL https://ailang.codes/install.sh | sh -s -- --channel beta
-curl -fsSL https://ailang.codes/install.sh | sh -s -- --version 0.0.1-beta.6</code></pre>
+curl -fsSL https://ailang.codes/install.sh | sh -s -- --version 0.0.1-beta.22</code></pre>
         <p>The default channel is beta until the first stable release. Beta, release-candidate, stable, and local builds use the same install layout.</p>
+    </section>
+
+    <section>
+        <h2>Package Targets</h2>
+        <p>
+            Platform targets are package-driven. A project restores target
+            packages through <code>ailang package restore</code>, and the CLI
+            invokes the target-owned run, publish, doctor, or flash tools.
+        </p>
+        <pre><code>ailang package restore
+ailang publish . --target aios-gui --target-option arch=aarch64</code></pre>
+        <p>
+            Target package versions are independent from reusable platform base
+            images. For AiOS, <code>target-aios-gui 0.0.1-alpha.4</code> can
+            reuse an existing <code>base-version=0.0.1-alpha.1</code> Buildroot
+            base cache.
+        </p>
     </section>
 
     <section>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AiLang Targets</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+<header class="container doc-page-header">
+    <nav class="top-nav" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="quickstart.html">Quickstart</a>
+        <a href="releases.html">Releases</a>
+        <a href="https://github.com/sponsors/AiLangCore" class="sponsor-link">Sponsor</a>
+    </nav>
+    <h1>Targets</h1>
+    <p class="tagline">Platform targets are package-owned so platform work can release independently from the core language and VM.</p>
+</header>
+
+<main class="container doc-page">
+    <section>
+        <h2>Official Target Packages</h2>
+        <div class="link-grid">
+            <a href="https://github.com/AiLangCore/ailang-target-macos">target-macos</a>
+            <a href="https://github.com/AiLangCore/ailang-target-linux">target-linux</a>
+            <a href="https://github.com/AiLangCore/ailang-target-windows">target-windows</a>
+            <a href="https://github.com/AiLangCore/ailang-target-wasm">target-wasm</a>
+            <a href="https://github.com/AiLangCore/ailang-target-aios">target-aios-gui</a>
+            <a href="https://github.com/AiLangCore/ailang-target-aios">target-aios-service</a>
+        </div>
+    </section>
+
+    <section>
+        <h2>How Resolution Works</h2>
+        <p>
+            AiLang keeps the CLI generic. Built-in SDK targets are resolved
+            first, then restored package targets are resolved from the project
+            lockfile. Target packages own their run, publish, doctor, and flash
+            tools.
+        </p>
+        <pre><code>ailang package restore
+ailang publish . --target wasm --target-option wasm-profile=spa
+ailang run . --target aios-gui --target-option arch=aarch64</code></pre>
+    </section>
+
+    <section>
+        <h2>AiOS Base Images</h2>
+        <p>
+            AiOS uses reusable Buildroot base images. Building a base requires a
+            Linux host, but macOS can run and publish applications against an
+            already cached or imported base image.
+        </p>
+        <pre><code>ailang aios build-base --target aios-gui --version 0.0.1-alpha.1 --arch aarch64
+ailang run . --target aios-gui \
+  --target-option arch=aarch64 \
+  --target-option base-version=0.0.1-alpha.1</code></pre>
+        <p>
+            The target package version and base image version are deliberately
+            separate. A target tooling release can reuse a compatible base
+            image without rebuilding Buildroot.
+        </p>
+    </section>
+
+    <section>
+        <h2>Current Target Releases</h2>
+        <ul>
+            <li>AiOS GUI/service targets: <code>0.0.1-alpha.4</code></li>
+            <li>macOS, Linux, Windows, WASM targets: <code>0.0.1-alpha.2</code></li>
+        </ul>
+    </section>
+</main>
+
+<footer class="container footer">
+    <p>&copy; 2026 Todd Henderson</p>
+</footer>
+
+</body>
+</html>
