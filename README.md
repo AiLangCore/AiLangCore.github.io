@@ -62,7 +62,7 @@ the generated article pages.
 - Official target packages:
   - `target-aios-gui` / `target-aios-service` `v0.0.1-alpha.5`
   - `target-wasm` `v0.0.1-alpha.3`
-  - `target-linux` `v0.0.1-alpha.3`
+  - `target-linux` `v0.0.1-alpha.4`
   - `target-macos`, `target-windows` `v0.0.1-alpha.2`
 
 The install scripts assemble these tools from their release artifacts through
