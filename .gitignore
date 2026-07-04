@@ -1,4 +1,8 @@
 _site/
+bin/
+obj/
+**/bin/
+**/obj/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
