@@ -156,6 +156,50 @@ resolve_version() {
   resolve_repo_version "$REPO" "$VERSION"
 }
 
+release_has_ailang_artifact() {
+  repo="$1"
+  tag="$2"
+  version_no_v="${tag#v}"
+  artifact="ailang-$version_no_v-$RID.tar.gz"
+  fetch_stdout "https://api.github.com/repos/$repo/releases/tags/$tag" 2>/dev/null \
+    | grep -Eq '"name"[[:space:]]*:[[:space:]]*"'"$artifact"'"'
+}
+
+resolve_ailang_version() {
+  if [ -n "$VERSION" ]; then
+    tag="$(normalize_tag "$VERSION")"
+    if ! release_has_ailang_artifact "$REPO" "$tag"; then
+      echo "AiLang release $tag does not contain an archive for $RID" >&2
+      return 1
+    fi
+    printf '%s\n' "$tag"
+    return 0
+  fi
+
+  if [ "$CHANNEL" = "stable" ]; then
+    tag="$(resolve_repo_version "$REPO" "")"
+    if [ -n "$tag" ] && release_has_ailang_artifact "$REPO" "$tag"; then
+      printf '%s\n' "$tag"
+      return 0
+    fi
+    return 1
+  fi
+
+  for tag in $(fetch_stdout "https://api.github.com/repos/$REPO/releases?per_page=100" 2>/dev/null \
+    | grep -o '"tag_name"[[:space:]]*:[[:space:]]*"[^"]*"' \
+    | sed -n 's/.*"\(v[^\"]*\)"/\1/p'); do
+    case "$tag" in
+      *-"$CHANNEL".*)
+        if release_has_ailang_artifact "$REPO" "$tag"; then
+          printf '%s\n' "$tag"
+          return 0
+        fi
+        ;;
+    esac
+  done
+  return 1
+}
+
 extract_archive() {
   archive="$1"
   dest="$2"
@@ -208,7 +252,7 @@ EOF
 need tar
 RID="$(detect_rid)"
 PLATFORM="$(detect_platform)"
-TAG="$(resolve_version)"
+TAG="$(resolve_ailang_version)"
 if [ -z "$TAG" ]; then
   echo "could not resolve AiLang release for channel: $CHANNEL" >&2
   exit 1
