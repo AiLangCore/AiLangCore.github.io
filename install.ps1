@@ -84,6 +84,15 @@ function Download-Asset {
   Invoke-WebRequest -Uri "https://github.com/$RepoName/releases/download/$TagName/$ArtifactName" -OutFile $OutFile
 }
 
+function Get-SdkAivmVersion {
+  param([string]$Destination)
+  $manifest = Join-Path $Destination 'sdk-runtime.toml'
+  if (-not (Test-Path $manifest)) { return $null }
+  $match = Select-String -Path $manifest -Pattern '^\s*aivmVersion\s*=\s*"([^"]+)"\s*$' | Select-Object -First 1
+  if ($match) { return $match.Matches[0].Groups[1].Value }
+  return $null
+}
+
 function New-Shim {
   param([string]$Name, [string]$Target)
   $path = Join-Path $InstallRoot "bin\$Name.cmd"
@@ -139,6 +148,9 @@ try {
   New-Item -ItemType Directory -Force $dest | Out-Null
   Expand-Package $archive $dest
 
+  if (-not $AivmVersion) {
+    $AivmVersion = Get-SdkAivmVersion $dest
+  }
   $aivmTag = Resolve-RepoTag $AivmRepo $AivmVersion
   if ($aivmTag) {
     $aivmVersionNoV = $aivmTag.TrimStart('v')

@@ -220,6 +220,15 @@ extract_archive() {
   esac
 }
 
+resolve_sdk_aivm_version() {
+  manifest="$1/sdk-runtime.toml"
+  if [ ! -f "$manifest" ]; then
+    return 0
+  fi
+  sed -n 's/^[[:space:]]*aivmVersion[[:space:]]*=[[:space:]]*"\([^"]*\)"[[:space:]]*$/\1/p' "$manifest" \
+    | head -n 1
+}
+
 download_release_asset() {
   repo="$1"
   tag="$2"
@@ -279,6 +288,9 @@ rm -rf "$DEST"
 mkdir -p "$DEST" "$INSTALL_ROOT/bin"
 extract_archive "$TMP_DIR/$ARTIFACT" "$DEST"
 
+if [ -z "$AIVM_VERSION" ]; then
+  AIVM_VERSION="$(resolve_sdk_aivm_version "$DEST")"
+fi
 AIVM_TAG="$(resolve_repo_version "$AIVM_REPO" "$AIVM_VERSION")"
 if [ -n "$AIVM_TAG" ]; then
   AIVM_VERSION_NO_V="${AIVM_TAG#v}"
